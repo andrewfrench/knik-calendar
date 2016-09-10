@@ -1,0 +1,109 @@
+{{ define "content" }}
+<div id="inner-container">
+  <button onclick="window.history.back();">&lt; Return to Admin</button>
+  <form id="event-form" method="POST" action="/admin/{{ .event.Id }}/update">
+    <div class="row" id="input-title">
+      <input class="wide" id="title" type="text" name="title" placeholder="Title" value="{{ .event.Title }}" required />
+    </div>
+    <div class="row" id="input-location">
+      <input class="wide" id="location" type="text" name="location" placeholder="Location" value="{{ .event.Location }}" required />
+    </div>
+    <div class="row" id="input-info-url">
+      <input class="wide" id="url" type="text" name="url" placeholder="Event URL (optional)" value="{{ .event.Url }}" />
+    </div>
+    <div class="row" id="input-date-time">
+      <div class="block" id="input-date">
+        <select name="month">
+          <option {{ if eq .event.Month "January" }}selected{{ end }}>January</option>
+          <option {{ if eq .event.Month "February" }}selected{{ end }}>February</option>
+          <option {{ if eq .event.Month "March" }}selected{{ end }}>March</option>
+          <option {{ if eq .event.Month "April" }}selected{{ end }}>April</option>
+          <option {{ if eq .event.Month "May" }}selected{{ end }}>May</option>
+          <option {{ if eq .event.Month "June" }}selected{{ end }}>June</option>
+          <option {{ if eq .event.Month "July" }}selected{{ end }}>July</option>
+          <option {{ if eq .event.Month "August" }}selected{{ end }}>August</option>
+          <option {{ if eq .event.Month "September" }}selected{{ end }}>September</option>
+          <option {{ if eq .event.Month "October" }}selected{{ end }}>October</option>
+          <option {{ if eq .event.Month "November" }}selected{{ end }}>November</option>
+          <option {{ if eq .event.Month "December" }}selected{{ end }}>December</option>
+        </select>
+        <select name="day">
+          <option {{ if eq .event.Day 1 }}selected{{ end }}>1</option>
+          <option {{ if eq .event.Day 2 }}selected{{ end }}>2</option>
+          <option {{ if eq .event.Day 3 }}selected{{ end }}>3</option>
+          <option {{ if eq .event.Day 4 }}selected{{ end }}>4</option>
+          <option {{ if eq .event.Day 5 }}selected{{ end }}>5</option>
+          <option {{ if eq .event.Day 6 }}selected{{ end }}>6</option>
+          <option {{ if eq .event.Day 7 }}selected{{ end }}>7</option>
+          <option {{ if eq .event.Day 8 }}selected{{ end }}>8</option>
+          <option {{ if eq .event.Day 9 }}selected{{ end }}>9</option>
+          <option {{ if eq .event.Day 10 }}selected{{ end }}>10</option>
+          <option {{ if eq .event.Day 11 }}selected{{ end }}>11</option>
+          <option {{ if eq .event.Day 12 }}selected{{ end }}>12</option>
+          <option {{ if eq .event.Day 13 }}selected{{ end }}>13</option>
+          <option {{ if eq .event.Day 14 }}selected{{ end }}>14</option>
+          <option {{ if eq .event.Day 15 }}selected{{ end }}>15</option>
+          <option {{ if eq .event.Day 16 }}selected{{ end }}>16</option>
+          <option {{ if eq .event.Day 17 }}selected{{ end }}>17</option>
+          <option {{ if eq .event.Day 18 }}selected{{ end }}>18</option>
+          <option {{ if eq .event.Day 19 }}selected{{ end }}>19</option>
+          <option {{ if eq .event.Day 20 }}selected{{ end }}>20</option>
+          <option {{ if eq .event.Day 21 }}selected{{ end }}>21</option>
+          <option {{ if eq .event.Day 22 }}selected{{ end }}>22</option>
+          <option {{ if eq .event.Day 23 }}selected{{ end }}>23</option>
+          <option {{ if eq .event.Day 24 }}selected{{ end }}>24</option>
+          <option {{ if eq .event.Day 25 }}selected{{ end }}>25</option>
+          <option {{ if eq .event.Day 26 }}selected{{ end }}>26</option>
+          <option {{ if eq .event.Day 27 }}selected{{ end }}>27</option>
+          <option {{ if eq .event.Day 28 }}selected{{ end }}>28</option>
+          <option {{ if eq .event.Day 29 }}selected{{ end }}>29</option>
+          <option {{ if eq .event.Day 30 }}selected{{ end }}>30</option>
+          <option {{ if eq .event.Day 31 }}selected{{ end }}>31</option>
+        </select>
+        <select name="year">
+          <option {{ if eq .event.Year 2016 }}selected{{ end }}>2016</option>
+          <option {{ if eq .event.Year 2017 }}selected{{ end }}>2017</option>
+        </select>
+      </div>
+      <div class="block" id="input-time">
+        <span id="at">at</span>
+        <select name="hour">
+          <option {{ if eq .event.Hour 1 }}selected{{ end }}>1</option>
+          <option {{ if eq .event.Hour 2 }}selected{{ end }}>2</option>
+          <option {{ if eq .event.Hour 3 }}selected{{ end }}>3</option>
+          <option {{ if eq .event.Hour 4 }}selected{{ end }}>4</option>
+          <option {{ if eq .event.Hour 5 }}selected{{ end }}>5</option>
+          <option {{ if eq .event.Hour 6 }}selected{{ end }}>6</option>
+          <option {{ if eq .event.Hour 7 }}selected{{ end }}>7</option>
+          <option {{ if eq .event.Hour 8 }}selected{{ end }}>8</option>
+          <option {{ if eq .event.Hour 9 }}selected{{ end }}>9</option>
+          <option {{ if eq .event.Hour 10 }}selected{{ end }}>10</option>
+          <option {{ if eq .event.Hour 11 }}selected{{ end }}>11</option>
+          <option {{ if eq .event.Hour 12 }}selected{{ end }}>12</option>
+        </select>
+        <select name="minute">
+          <option {{ if eq .event.Minute 00 }}selected{{ end }}>00</option>
+          <option {{ if eq .event.Minute 15 }}selected{{ end }}>15</option>
+          <option {{ if eq .event.Minute 30 }}selected{{ end }}>30</option>
+          <option {{ if eq .event.Minute 45 }}selected{{ end }}>45</option>
+        </select>
+        <select name="ampm">
+          <option {{ if eq .event.Ampm "am" }}selected{{ end }}>am</option>
+          <option {{ if eq .event.Ampm "pm" }}selected{{ end }}>pm</option>
+        </select>
+      </div>
+    </div>
+    <input type="checkbox" name="free" id="input-free" {{ if .event.Free }}checked{{ end }} />
+    <label for="input-free">Free</label>
+    <div id="price">
+      <label for="input-price">$</label>
+      <input type="text" name="price" placeholder="Price" id="input-price" value="{{ .event.Price }}" {{ if .event.Free }}disabled{{ end }} />
+    </div>
+    <div class="row" id="details">
+      <textarea class="wide" name="details" placeholder="Details (optional)">{{ .event.Details }}</textarea>
+    </div>
+    <button type="submit">Update</button>
+  </form>
+</div>
+<script src="/assets/js/price.js"></script>
+{{ end }}

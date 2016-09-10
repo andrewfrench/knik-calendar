@@ -1,0 +1,101 @@
+{{ define "content" }}
+<h3>Unapproved Events</h3>
+<div id="scroll-wrapper">
+  <div id="scroll">
+    {{ range .unapproved }}
+      <div class="event-list">
+        <div class="day-info">{{ .Date }}</div>
+          {{ range .Events }}
+            <a href="/admin/{{ .Id }}/edit">
+              <div class="event">
+                <div class="event-title">{{ .Title }}</div>
+                <div class="event-info">{{ .Time }}</div>
+                <span class="event-info">&middot;</span>
+                {{ if .Free }}
+                  <div class="event-info">Free</div>
+                {{ else }}
+                  <div class="event-info">${{ .Price }}</div>
+                {{ end }}
+                <span class="event-info">&middot;</span>
+                <div class="event-info">{{ .Location }}</div>
+                <div>
+                  <a href="/admin/{{ .Id }}/approve">
+                    <button class="approve">Approve</button>
+                  </a>
+                  <a href="/admin/{{ .Id }}/deny">
+                    <button class="deny">Deny</button>
+                  </a>
+                </div>
+              </div>
+            </a>
+          {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+<h3>Approved Events</h3>
+<div id="scroll-wrapper">
+  <div id="scroll">
+    {{ range .approved }}
+      <div class="event-list">
+        <div class="day-info">{{ .Date }}</div>
+          {{ range .Events }}
+            <a href="/admin/{{ .Id }}/edit">
+              <div class="event">
+                <div class="event-title">{{ .Title }}</div>
+                <div class="event-info">{{ .Time }}</div>
+                <span class="event-info">&middot;</span>
+                {{ if .Free }}
+                  <div class="event-info">Free</div>
+                {{ else }}
+                  <div class="event-info">${{ .Price }}</div>
+                {{ end }}
+                <span class="event-info">&middot;</span>
+                <div class="event-info">{{ .Location }}</div>
+                <div>
+                  <a href="/admin/{{ .Id }}/deny">
+                    <button class="deny">Deny</button>
+                  </a>
+                </div>
+              </div>
+            </a>
+          {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+<h3>Denied Events</h3>
+<div id="scroll-wrapper">
+  <div id="scroll">
+    {{ range .denied }}
+      <div class="event-list">
+        <div class="day-info">{{ .Date }}</div>
+          {{ range .Events }}
+            <a href="/admin/{{ .Id }}/edit">
+              <div class="event">
+                <div class="event-title">{{ .Title }}</div>
+                <div class="event-info">{{ .Time }}</div>
+                <span class="event-info">&middot;</span>
+                {{ if .Free }}
+                  <div class="event-info">Free</div>
+                {{ else }}
+                  <div class="event-info">${{ .Price }}</div>
+                {{ end }}
+                <span class="event-info">&middot;</span>
+                <div class="event-info">{{ .Location }}</div>
+                <div>
+                  <a href="/admin/{{ .Id }}/approve">
+                    <button class="approve">Approve</button>
+                  </a>
+                  <a href="/admin/{{ .Id }}/delete">
+                    <button class="delete">Delete</button>
+                  </a>
+                </div>
+              </div>
+            </a>
+          {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

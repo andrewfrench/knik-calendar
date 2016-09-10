@@ -1,0 +1,38 @@
+{{ define "content" }}
+<div id="inner-container">
+  <button onclick="window.history.back();">&lt; Return to Calendar</button>
+  <table>
+    <tr>
+      <td class="label">event</td><td class="view-title">{{ .event.Title }}</td>
+    </tr>
+    <tr>
+      <td class="label">date</td><td class="view-date">{{ .event.Month }} {{ .event.Day }}, {{ .event.Year }}</td>
+    </tr>
+    <tr>
+      <td class="label">time</td><td class="view-time">{{ .event.Time }}</td>
+    </tr>
+    {{ if .event.Free }}
+    <tr>
+      <td class="label">price</td><td class="view-price">Free</td>
+    </tr>
+    {{ else }}
+    <tr>
+      <td class="label">price</td><td class="view-price">${{ .event.Price }}</td>
+    </tr>
+    {{ end }}
+    <tr>
+      <td class="label">location</td><td class="view-location">{{ .event.Location }}</td>
+    </tr>
+    {{ if .event.Url }}
+    <tr>
+      <td class="label">link</td><td class="view-link"><a href="{{ .event.Url }}" target="_blank">more info</a></td>
+    </tr>
+    {{ end }}
+    {{ if .event.Details }}
+    <tr>
+      <td class="label">details</td><td class="view-details">{{ .event.Details }}</td>
+    </tr>
+    {{ end }}
+  </table>
+</div>
+{{ end }}

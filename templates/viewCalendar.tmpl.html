@@ -1,0 +1,31 @@
+{{ define "content" }}
+<button class="date-nav" id="prev-date">&larr;</button>
+<button class="date-nav" id="next-date">&rarr;</button>
+<a href="/create"><button>Create an Event</button></a>
+<div id="scroll-wrapper">
+  <div id="scroll">
+    {{ range .events }}
+      <div class="event-list">
+        <div class="day-info">{{ .Date }}</div>
+          {{ range .Events }}
+            <a href="/event/{{ .Id }}">
+              <div class="event">
+                <div class="event-title">{{ .Title }}</div>
+                <div class="event-info">{{ .Time }}</div>
+                <span class="event-info">&middot;</span>
+                {{ if .Free }}
+                  <div class="event-info">Free</div>
+                {{ else }}
+                  <div class="event-info">${{ .Price }}</div>
+                {{ end }}
+                <span class="event-info">&middot;</span>
+                <div class="event-info">{{ .Location }}</div>
+              </div>
+            </a>
+          {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+<script src="/assets/js/nav.js"></script>
+{{ end }}
