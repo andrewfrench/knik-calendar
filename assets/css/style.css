@@ -29,6 +29,15 @@ div.row {
   margin: 6px 0 6px 0;
 }
 
+div.error-list {
+  font-size: 14px;
+  color: #b33;
+}
+
+div.error-list p {
+  margin: 6px 0 6px 0;
+}
+
 input {
     font-size: 16px;
     padding: 6px;
